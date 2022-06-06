@@ -5,6 +5,6 @@ class Main {
     System.out.println("chickem");
 
     
-    System.out.println("lajibolala")
+    System.out.println("lajibolala");
   }
 }
