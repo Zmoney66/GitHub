@@ -35,16 +35,11 @@ public class Game implements Serializable{
   private ArrayList<String> dfltWrds;
   private String crrntWrd;
   private String shw;
-  Scanner scan = new Scanner(System.in);
+  transient Scanner scan = new Scanner(System.in);
   private String gss;
   private int mx; 
   HashMap<String, Integer> ldrbrd = new HashMap<String, Integer>();
   public String name;
-  
-/* public String toString () {
-    return "name = " + name + "\nword bank = " + wrdBnk + "\ndefault words = " + dfltWrds + "\ntries = " + i;
-  } */
-
   
   // Constructor, to initialize the instance variable
   public Game(){
@@ -91,9 +86,7 @@ public class Game implements Serializable{
         System.out.println("Type in a nickname to be added to the LEADERBOARD: ");
         String nck = scan.nextLine();
         ldrbrd.put(nck, i);
-        
-        
-        
+        save();
      return;
 }
    
@@ -121,13 +114,8 @@ public class Game implements Serializable{
 }
   
 public boolean save () {
-    if (name == null)
-      return false;
-
-    String fileName = name + "Game.ser";
-    
     try {
-      FileOutputStream fos = new FileOutputStream(fileName);
+      FileOutputStream fos = new FileOutputStream("leader.ser");
       ObjectOutputStream oos = new ObjectOutputStream(fos);
       oos.writeObject(this);
       oos.close();
@@ -139,11 +127,9 @@ public boolean save () {
     }
   }
 
-  public static Game restore (String name) {
-    String fileName = name + "Game.ser";
-    
+  public static Game restore () {
     try {
-		  FileInputStream fis = new FileInputStream(fileName);
+		  FileInputStream fis = new FileInputStream("leader.ser");
       ObjectInputStream ois = new ObjectInputStream(fis);
       Game s = (Game) ois.readObject();
 	    ois.close();

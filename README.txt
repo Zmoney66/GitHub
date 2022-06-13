@@ -10,4 +10,4 @@ In this game, the user has to input a series of words into a word list and try t
 Author - Zaira Ganga, Kelsey Wang, and Keira Wong
 
 How does our program use serialization?
-- Our serialization keeps track of the players on the leaderboard and their submitted word banks and number of tries. 
+- Our serialization is implemented in our leaderboard. When the user types their nickname after their game, they are able to continue to play or stop the program. Once they stop the program, and restart the game, they are able to look at the leaderboard by putting "l" and their score should be saved.

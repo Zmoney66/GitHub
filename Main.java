@@ -11,6 +11,12 @@ class Main {
     Game g = new Game();
     String act = "";
 
+    g = g.restore();
+    
+    if(g == null){
+      g = new Game();
+    }
+     
     do{
       System.out.println("Choose an action to begin: press a to add word to word list, press n to start new game, press l for the leaderboard, and press q to quit");
       act = scan.nextLine();
