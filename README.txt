@@ -10,4 +10,4 @@ In this game, the user has to input a series of words into a word list and try t
 Author - Zaira Ganga, Kelsey Wang, and Keira Wong
 
 How does our program use serialization?
-- ...
+- Our serialization keeps track of the players on the leaderboard and their submitted word banks and number of tries. 
