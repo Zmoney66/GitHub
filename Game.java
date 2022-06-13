@@ -19,13 +19,17 @@ Change history:
 5/31: demoed and after school, adding in more of the requirements
 */
 
-
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.HashMap;
+import java.io.Serializable;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
-
-public class Game {
+public class Game implements Serializable{
   private ArrayList<String> wrdBnk;
   private ArrayList<String> lttrs;
   private ArrayList<String> dfltWrds;
@@ -35,9 +39,8 @@ public class Game {
   private String gss;
   private int mx; 
   HashMap<String, Integer> ldrbrd = new HashMap<String, Integer>();
+  public String name;
   
-  //private HashMap<String, String> facts;
-
 
   // Constructor, to initialize the instance variable
   public Game(){
@@ -85,6 +88,8 @@ public class Game {
         String nck = scan.nextLine();
         ldrbrd.put(nck, i);
         
+        
+        
      return;
 }
    
@@ -109,7 +114,39 @@ public class Game {
   
   public void ldr(){
     System.out.println(ldrbrd);
-    
 }
+  
+public boolean save () {
+    if (name == null)
+      return false;
 
+    String fileName = name + "Game.ser";
+    
+    try {
+      FileOutputStream fos = new FileOutputStream(fileName);
+      ObjectOutputStream oos = new ObjectOutputStream(fos);
+      oos.writeObject(this);
+      oos.close();
+      fos.close();
+      return true;
+    } catch (IOException e) {
+      System.err.println(e);
+      return false;
+    }
+  }
+
+  public static Game restore (String name) {
+    String fileName = name + "Game.ser";
+    
+    try {
+		  FileInputStream fis = new FileInputStream(fileName);
+      ObjectInputStream ois = new ObjectInputStream(fis);
+      Game s = (Game) ois.readObject();
+	    ois.close();
+	    fis.close();
+      return s;
+	  } catch(Exception e) { 
+	    return null;
+	  }
+  }
 }
