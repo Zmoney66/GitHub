@@ -41,7 +41,11 @@ public class Game implements Serializable{
   HashMap<String, Integer> ldrbrd = new HashMap<String, Integer>();
   public String name;
   
+/* public String toString () {
+    return "name = " + name + "\nword bank = " + wrdBnk + "\ndefault words = " + dfltWrds + "\ntries = " + i;
+  } */
 
+  
   // Constructor, to initialize the instance variable
   public Game(){
   
